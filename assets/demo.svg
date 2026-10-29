@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" width="800" height="340" role="img" aria-label="Animation: tap Caps Lock once to copy selected text, tap it twice quickly to paste">
+  <style>
+    .ui   { font-family: "Segoe UI", system-ui, -apple-system, sans-serif; }
+    .mono { font-family: Consolas, "Cascadia Mono", ui-monospace, monospace; }
+    .a { animation-duration: 10s; animation-iteration-count: infinite; animation-timing-function: ease-in-out; }
+
+    .sel  { animation-name: sel; transform-box: fill-box; transform-origin: left center; }
+    @keyframes sel { 0%,6% {transform: scaleX(0); opacity: 1} 13% {transform: scaleX(1)} 40% {transform: scaleX(1); opacity: 1} 44%,100% {transform: scaleX(1); opacity: 0} }
+
+    .key  { animation-name: key; }
+    @keyframes key { 0%,19% {transform: translateY(0)} 20.5% {transform: translateY(5px)} 22%,54% {transform: translateY(0)} 55.5% {transform: translateY(5px)} 57%,59% {transform: translateY(0)} 60.5% {transform: translateY(5px)} 62%,100% {transform: translateY(0)} }
+    .glow { animation-name: glow; }
+    @keyframes glow { 0%,19% {opacity: 0} 20.5% {opacity: 1} 22%,54% {opacity: 0} 55.5% {opacity: 1} 57%,59% {opacity: 0} 60.5% {opacity: 1} 62%,100% {opacity: 0} }
+
+    .tipC { animation-name: tipC; }
+    @keyframes tipC { 0%,22% {opacity: 0; transform: translateY(6px)} 24%,38% {opacity: 1; transform: translateY(0)} 41%,100% {opacity: 0} }
+    .tipP { animation-name: tipP; }
+    @keyframes tipP { 0%,62% {opacity: 0; transform: translateY(6px)} 64%,80% {opacity: 1; transform: translateY(0)} 83%,100% {opacity: 0} }
+
+    .x1 { animation-name: x1; }
+    @keyframes x1 { 0%,19% {opacity: 0} 21%,40% {opacity: 1} 43%,100% {opacity: 0} }
+    .x2 { animation-name: x2; }
+    @keyframes x2 { 0%,59% {opacity: 0} 61%,82% {opacity: 1} 85%,100% {opacity: 0} }
+
+    .caretA { animation-name: caretA; }
+    @keyframes caretA { 0%,44% {opacity: 0} 46%,62% {opacity: 1} 63%,100% {opacity: 0} }
+    .caretB { animation-name: caretB; }
+    @keyframes caretB { 0%,63% {opacity: 0} 64%,92% {opacity: 1} 95%,100% {opacity: 0} }
+    .paste { animation-name: paste; }
+    @keyframes paste { 0%,62% {opacity: 0} 64%,92% {opacity: 1} 96%,100% {opacity: 0} }
+
+    .cap1 { animation-name: cap1; }
+    @keyframes cap1 { 0%,8% {opacity: 0} 14%,42% {opacity: 1} 47%,100% {opacity: 0} }
+    .cap2 { animation-name: cap2; }
+    @keyframes cap2 { 0%,48% {opacity: 0} 53%,88% {opacity: 1} 93%,100% {opacity: 0} }
+
+    @media (prefers-reduced-motion: reduce) {
+      .a { animation: none !important; }
+      .tipC, .x2, .caretA, .caretB, .cap2 { opacity: 0; }
+    }
+  </style>
+
+  <rect width="800" height="340" rx="18" fill="#0f172a"/>
+
+  <!-- Editor window -->
+  <rect x="36" y="28" width="470" height="210" rx="10" fill="#1e293b" stroke="#334155"/>
+  <path d="M36 38 a10 10 0 0 1 10 -10 h450 a10 10 0 0 1 10 10 v20 h-470 z" fill="#334155"/>
+  <circle cx="54" cy="43" r="5" fill="#f87171"/><circle cx="70" cy="43" r="5" fill="#fbbf24"/><circle cx="86" cy="43" r="5" fill="#34d399"/>
+  <text x="271" y="48" text-anchor="middle" class="ui" font-size="13" fill="#cbd5e1">notes.txt</text>
+
+  <rect class="a sel" x="62" y="80" width="262" height="28" rx="3" fill="#3b82f6" fill-opacity="0.55"/>
+  <text x="64" y="100" class="mono" font-size="18" fill="#e2e8f0" textLength="258" lengthAdjust="spacingAndGlyphs">Meeting at 5 PM - Room 204</text>
+
+  <text x="64" y="160" class="mono" font-size="18" fill="#94a3b8" textLength="60" lengthAdjust="spacingAndGlyphs">Note: </text>
+  <text class="a paste" x="124" y="160" font-size="18" fill="#e2e8f0" font-family="Consolas, 'Cascadia Mono', ui-monospace, monospace" textLength="258" lengthAdjust="spacingAndGlyphs">Meeting at 5 PM - Room 204</text>
+  <rect class="a caretA" x="125" y="143" width="2" height="22" fill="#f8fafc"/>
+  <rect class="a caretB" x="384" y="143" width="2" height="22" fill="#f8fafc"/>
+
+  <!-- Tooltips (Windows-style) -->
+  <g class="a tipC">
+    <rect x="300" y="110" width="118" height="32" rx="6" fill="#fefce8" stroke="#a16207" stroke-opacity="0.4"/>
+    <text x="359" y="131" text-anchor="middle" class="ui" font-size="15" font-weight="600" fill="#1e293b">📋 Copied!</text>
+  </g>
+  <g class="a tipP">
+    <rect x="360" y="170" width="118" height="32" rx="6" fill="#fefce8" stroke="#a16207" stroke-opacity="0.4"/>
+    <text x="419" y="191" text-anchor="middle" class="ui" font-size="15" font-weight="600" fill="#1e293b">📌 Pasted!</text>
+  </g>
+
+  <!-- Keyboard -->
+  <g class="ui">
+    <rect x="540" y="58" width="96" height="52" rx="9" fill="#1e293b" stroke="#334155"/>
+    <text x="588" y="90" text-anchor="middle" font-size="15" fill="#64748b">Tab</text>
+    <rect x="644" y="58" width="52" height="52" rx="9" fill="#1e293b" stroke="#334155"/>
+    <text x="670" y="90" text-anchor="middle" font-size="15" fill="#64748b">Q</text>
+    <rect x="704" y="58" width="52" height="52" rx="9" fill="#1e293b" stroke="#334155"/>
+    <text x="730" y="90" text-anchor="middle" font-size="15" fill="#64748b">W</text>
+    <rect x="540" y="182" width="136" height="52" rx="9" fill="#1e293b" stroke="#334155"/>
+    <text x="608" y="214" text-anchor="middle" font-size="15" fill="#64748b">Shift</text>
+    <rect x="684" y="182" width="52" height="52" rx="9" fill="#1e293b" stroke="#334155"/>
+    <text x="710" y="214" text-anchor="middle" font-size="15" fill="#64748b">Z</text>
+
+    <g class="a key">
+      <rect x="540" y="118" width="164" height="56" rx="10" fill="#334155" stroke="#64748b"/>
+      <rect class="a glow" x="540" y="118" width="164" height="56" rx="10" fill="#3b82f6"/>
+      <text x="622" y="152" text-anchor="middle" font-size="17" font-weight="700" fill="#f8fafc">Caps Lock</text>
+    </g>
+    <g class="a x1">
+      <circle cx="740" cy="146" r="20" fill="#22c55e"/>
+      <text x="740" y="152" text-anchor="middle" font-size="16" font-weight="800" fill="#052e16">×1</text>
+    </g>
+    <g class="a x2">
+      <circle cx="740" cy="146" r="20" fill="#a855f7"/>
+      <text x="740" y="152" text-anchor="middle" font-size="16" font-weight="800" fill="#faf5ff">×2</text>
+    </g>
+  </g>
+
+  <!-- Captions -->
+  <g class="ui" font-size="22" font-weight="700" text-anchor="middle">
+    <text class="a cap1" x="400" y="295" fill="#f8fafc">Tap <tspan fill="#60a5fa">Caps Lock</tspan> once  →  <tspan fill="#4ade80">Copy</tspan></text>
+    <text class="a cap2" x="400" y="295" fill="#f8fafc">Tap it twice quickly  →  <tspan fill="#c084fc">Paste</tspan></text>
+  </g>
+  <text x="400" y="322" text-anchor="middle" class="ui" font-size="13" fill="#64748b">Shift + Caps Lock still types CAPITALS when you need them</text>
+</svg>

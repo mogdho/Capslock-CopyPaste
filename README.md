@@ -4,116 +4,131 @@
 ![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 ![Platform](https://img.shields.io/badge/Platform-Windows-blue?style=for-the-badge&logo=windows)
 
-**Capslock-CopyPaste** is a productivity-boosting AutoHotkey v2 script that transforms the often-unused `CapsLock` key into a smart **Copy & Paste** shortcut — with visual feedback and intelligent clipboard protection.
+**Turn the useless `Caps Lock` key into Copy & Paste.** Tap once to copy, tap twice to paste. That's it.
+
+<p align="center">
+  <img src="assets/demo.svg" width="100%" alt="Animation: tap Caps Lock once to copy selected text, tap twice quickly to paste it">
+</p>
 
 ---
 
-## ✨ Features
+## ⌨️ Controls
 
-| Action | Shortcut | What It Does |
-|--------|----------|--------------|
-| 📋 **Copy** | Single press `CapsLock` | Copies selected text/files (`Ctrl+C`) |
-| 📌 **Paste** | Double press `CapsLock` | Pastes clipboard content (`Ctrl+V`) |
-| 🔠 **Toggle CapsLock** | `Shift + CapsLock` | Turns original CapsLock on/off |
-| 🔄 **Untoggle CapsLock** | `CapsLock` (while toggled on) | Turns CapsLock back off gracefully |
+| You press | What happens | You see |
+|:--|:--|:--|
+| `Caps Lock` **once** | 📋 Copies what you selected | **📋 Copied!** |
+| `Caps Lock` **twice quickly** | 📌 Pastes | **📌 Pasted!** |
+| `Ctrl` + `Caps Lock` **twice quickly** | 📝 Pastes as **plain text**: no fonts, colors or links | **📝 Pasted as plain text!** |
+| `Shift` + `Caps Lock` | 🔠 Turns normal CAPITALS on/off | — |
+| `Caps Lock` while CAPITALS are on | Turns CAPITALS off (no copy/paste) | — |
 
-### 💬 Visual Feedback
+> 💡 Works with **text, images and files** — anything `Ctrl+C` / `Ctrl+V` can handle.
+>
+> 📝 **Plain-text paste** is great for copying from a website into Word, Gmail or Outlook without bringing the website's fonts along. Your formatted copy stays on the clipboard for next time.
 
-Every action shows an auto-vanishing tooltip near your cursor so you always know what happened:
+### 💬 The little pop-ups
 
-| Tooltip | Duration | Meaning |
-|---------|----------|---------|
-| 📋 **Copied!** | 500ms | ✅ Copy successful |
-| 📌 **Pasted!** | 500ms | ✅ Paste successful |
-| 🚫 **Blocked!** | 800ms | ⚠️ Browser internal URL blocked |
-| ❌ **Nothing to paste!** | 800ms | ❌ Clipboard is empty |
-| ❌ **Nothing copied!** | 800ms | ❌ No content was selected to copy |
+A small tooltip appears next to your mouse and disappears by itself:
 
-### 🛡️ Smart Clipboard Protection
-
-The script intelligently prevents unwanted clipboard content:
-
-- 🚫 **Blocks browser internal URLs** — Accidentally copying `about:blank`, `chrome://newtab`, `edge://`, etc. won't overwrite your clipboard
-- 🖼️ **Preserves all clipboard formats** — Uses `ClipboardAll()` to protect images, files, and rich-text (not just plain text)
-- 🔄 **Auto-restore** — If a copy is blocked or fails, your previous clipboard content is automatically restored
-
-#### Blocked Patterns
-
-```
-about:blank, about:newtab, chrome://, edge://, brave://, opera://, vivaldi://, firefox:
-```
-
-### ⚡ Smart Tap Detection
-
-Uses a precise **300ms timer** with `A_PriorHotkey` and `A_TimeSincePriorHotkey` to accurately distinguish between single and double taps — no accidental triggers. A `KeyWait` guard ensures the physical key is fully released before sending `Ctrl+C`, preventing modifier interference.
-
-### 🔒 Auto-Admin Elevation
-
-Automatically requests Administrator privileges on startup so the shortcut works across **all** applications, including elevated system windows.
-
-### 🔠 CapsLock Mode Awareness
-
-When CapsLock is toggled on via `Shift + CapsLock`, pressing `CapsLock` alone will **not** trigger copy/paste — it will simply turn CapsLock back off. This prevents accidental clipboard operations while typing in uppercase.
+| Pop-up | Meaning |
+|:--|:--|
+| **📋 Copied!** | ✅ Copy worked |
+| **📌 Pasted!** | ✅ Paste worked |
+| **📝 Pasted as plain text!** | ✅ Plain-text paste worked |
+| **🚫 Blocked!** | ⚠️ You copied a browser address like `chrome://newtab`, so your old clipboard was kept |
+| **❌ Nothing copied!** | Nothing was selected, so your old clipboard was kept |
+| **❌ Nothing to paste!** | The clipboard is empty |
+| **❌ No text to paste!** | Plain-text paste, but the clipboard holds only an image or files |
 
 ---
 
-## 🚀 Installation & Usage
+## 🚀 Get started
 
-### Prerequisites
+### ⚡ Easiest: download the .exe (no AutoHotkey needed)
 
-> ⚠️ You need **[AutoHotkey v2.0+](https://www.autohotkey.com/)** installed on your Windows PC.
+```
+ ① Download Capslock-CopyPaste.exe   →   ② Double-click it   →   ✅ Tap Caps Lock!
+```
 
-### Steps
+1. Go to **[Releases](https://github.com/mogdho/Capslock-CopyPaste/releases/latest)** and download **`Capslock-CopyPaste.exe`**.
+2. **Double-click** it and click **Yes** on the admin pop-up.
+   An **up-arrow icon** appears in your system tray: the app is running. 🎉
 
-1. 📥 **Download** the `Capslock-CopyPaste.ahk` file from this repository
-2. ▶️ **Double-click** the file to run it — it will auto-request admin privileges
-3. ✅ **Done!** Start using `CapsLock` as your Copy/Paste key
+> 🛡️ **"Windows protected your PC"?** The .exe isn't code-signed (that costs money), so Windows SmartScreen may warn you. Click **More info** → **Run anyway**. Don't trust it? Use the script version below and read the code yourself.
 
-### 🔁 Auto-Start on Boot (Optional)
+### 🛠️ Or run the script with AutoHotkey
 
-Want it to run automatically when Windows starts?
+1. **Install [AutoHotkey v2](https://www.autohotkey.com/)** (free).
+2. **Download** this repository: green **Code** button → **Download ZIP**, then unzip it.
+3. **Double-click** `Capslock-CopyPaste.ahk` and click **Yes** on the admin pop-up.
+   An **up-arrow icon** appears in your system tray: the script is running. 🎉
 
-1. Press `Win + R` on your keyboard
-2. Type `shell:startup` and press **Enter**
-3. Copy the `Capslock-CopyPaste.ahk` file into the folder that opens
-4. That's it! The script will now start automatically on every boot
-
-> 💡 **Tip:** Make sure the script has Administrator privileges for it to work in all windows. You can create a shortcut to the `.ahk` file, go to Properties → Shortcut → Advanced, and check **"Run as administrator"**.
+> **Why admin?** Without it, Windows blocks the shortcut inside apps that run as administrator (Task Manager, installers, admin terminals…).
 
 ---
 
-## 🧠 How It Works
+## 🗂️ Tray menu
 
+Right-click the tray icon:
+
+<p align="center">
+  <img src="assets/tray.svg" width="80%" alt="Tray menu with Pause, Start with Windows and Exit">
+</p>
+
+| Option | What it does |
+|:--|:--|
+| **Pause** | Caps Lock goes back to normal until you resume. The icon fades. *Tip: double-click the tray icon to pause / resume.* |
+| **Start with Windows** | Starts the script automatically when you log in, **with no admin pop-up**. Click again to turn it off. |
+| **Exit** | Closes the script. |
+
+> 💡 If you move the script to another folder, just tick **Start with Windows** again.
+
+---
+
+## 🧠 How it works
+
+```mermaid
+flowchart TD
+    A([⌨️ You press Caps Lock]) --> B{CAPITALS on?}
+    B -- Yes --> C[Turn CAPITALS off]
+    B -- No --> D{Second tap within 300 ms?}
+    D -- No --> E[Wait 300 ms, then copy · Ctrl+C]
+    D -- Yes --> K{Ctrl held?}
+    K -- No --> F[📌 Paste · Ctrl+V]
+    K -- Yes --> L[📝 Paste text only,<br/>then put the formatted copy back]
+    E --> G{Copied a browser address?}
+    G -- Yes --> H[🚫 Restore old clipboard]
+    G -- No --> I[📋 Copied!]
 ```
-                    ┌──────────────────────┐
-                    │   Press CapsLock     │
-                    └──────────┬───────────┘
-                               │
-                    ┌──────────▼───────────┐
-                    │  Is CapsLock         │
-                    │  toggled ON?         │
-                    └──────────┬───────────┘
-                        │             │
-                       YES            NO
-                        │             │
-               ┌────────▼──────┐  ┌──▼───────────────┐
-               │  Turn it OFF  │  │  Wait 300ms...   │
-               │  (no copy/    │  │  Is it a double  │
-               │   paste)      │  │  tap?            │
-               └───────────────┘  └──────────┬───────┘
-                                      │             │
-                                     NO            YES
-                                      │             │
-                             ┌────────▼──────┐  ┌──▼───────────┐
-                             │  📋 COPY      │  │  📌 PASTE     │
-                             │  (Ctrl+C)     │  │  (Ctrl+V)     │
-                             │               │  │               │
-                             │  → KeyWait    │  │  → Check if   │
-                             │  → Check if   │  │    clipboard   │
-                             │    blocked    │  │    is empty    │
-                             │  → Tooltip    │  │  → Tooltip     │
-                             └───────────────┘  └───────────────┘
-```
+
+**Smart details**
+
+- 🛡️ **Your clipboard is protected.** The old clipboard (text, images, files, formatting) is saved first. If the copy fails or is blocked, it's put back.
+- 🚫 **Blocked addresses:** text that *starts with* `about:blank`, `about:newtab`, `chrome://`, `edge://`, `brave://`, `opera://`, `vivaldi://` or `firefox:`. These usually come from accidentally copying an empty browser tab.
+- ✋ **Holding** `Caps Lock` does nothing extra: no repeated pasting.
+- 🎯 **Tapping 3 times** pastes once, not twice.
+- ⏱️ **Want faster copying?** Open the script and lower `DoubleTapMs := 300` (e.g. `250`). Lower = faster copy, but you'll need to double-tap faster.
+
+---
+
+## ❓ Troubleshooting
+
+| Problem | Fix |
+|:--|:--|
+| Nothing happens | Check the up-arrow tray icon is there and not faded (paused). Make sure you installed AutoHotkey **v2**, not v1. |
+| Doesn't work in Task Manager / admin apps | The script must run as admin: click **Yes** on the pop-up, or tick **Start with Windows**. |
+| Double-tap copies instead of pasting | Tap faster, or raise `DoubleTapMs` a little (e.g. `350`). |
+| I need real Caps Lock | Press `Shift + Caps Lock`, or **Pause** the script. |
+
+---
+
+## 🗑️ Uninstall
+
+1. Right-click the tray icon → **untick Start with Windows** *(removes its startup task)*.
+2. Right-click the tray icon → **Exit**.
+3. Delete `Capslock-CopyPaste.exe` / `.ahk`.
+
+> ⚠️ **Already deleted it?** The startup task is left behind. Press `Win + R` → `taskschd.msc` → right-click **Capslock-CopyPaste (AutoHotkey)** → **Delete**.
 
 ---
 
@@ -121,15 +136,11 @@ Want it to run automatically when Windows starts?
 
 ```
 Capslock-CopyPaste/
-├── 📄 Capslock-CopyPaste.ahk   ← Main script
+├── 📄 Capslock-CopyPaste.ahk   ← The script
+├── 📁 assets/
+│   └── demo.svg / tray.svg   ← Pictures in this README
 └── 📖 README.md                ← You are here!
 ```
-
----
-
-## 🔗 Download / Source
-
-- 📂 **Repository:** [github.com/mogdho/Capslock-CopyPaste](https://github.com/mogdho/Capslock-CopyPaste)
 
 ---
 
