@@ -6,6 +6,8 @@
 
 **Turn the useless `Caps Lock` key into Copy & Paste.** Tap once to copy, tap twice to paste. That's it.
 
+**⬇️ Download and setup guide: [mogdhopaul.com/capslock-copypaste](https://mogdhopaul.com/capslock-copypaste/)**
+
 <p align="center">
   <img src="assets/demo.svg" width="100%" alt="Animation: tap Caps Lock once to copy selected text, tap twice quickly to paste it">
 </p>
